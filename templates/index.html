@@ -1,0 +1,40 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>ImagemGPT</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ImagemGPT</h1>
+        </header>
+
+        <section class="upload-section">
+            <h2>Enviar Imagem</h2>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <input type="file" name="photo" accept="image/*">
+                <button type="submit">Enviar Imagem</button>
+            </form>
+            <img src="{{ url_for('upload') }}" alt="Uploaded Image">
+            <a href="{{ url_for('download', image_type='uploaded') }}" download>
+                <button>Baixar Imagem Enviada</button>
+            </a>
+        </section>
+
+        <section class="generate-section">
+            <h2>Gerar Imagem AleatÃ³ria</h2>
+            <form action="/generate" method="post">
+                <button type="submit">Gerar Imagem</button>
+            </form>
+            <img src="{{ url_for('generate') }}" alt="Generated Image">
+            <a href="{{ url_for('download', image_type='generated') }}" download>
+                <button>Baixar Imagem Gerada</button>
+            </a>
+        </section>
+    </div>
+</body>
+</html>
